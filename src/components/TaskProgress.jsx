@@ -7,6 +7,7 @@ export default function TaskProgress() {
   const [finishedCount, setFinishedCount] = useState(0);
   const [finishedPercentage, setFinishedPercentage] = useState(0);
 
+  // Effect to calculate the percentage & finished amount when the task list changes
   useEffect(() => {
     const newFinishedCount = taskContext.state.filter(
       (t) => t.completed
@@ -24,10 +25,12 @@ export default function TaskProgress() {
             height: "100%",
             width: finishedPercentage + "%",
             backgroundColor: "white",
+            boxSizing: "border-box",
+            borderRadius: "10px",
           }}
         ></div>
       </div>
-      <p className="progress-bar__counter">{finishedCount} completed</p>
+      <span className="progress-bar__counter">{finishedCount} completed</span>
     </div>
   );
 }
