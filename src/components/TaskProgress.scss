@@ -1,0 +1,8 @@
+.progress-bar {
+  border: 1px black solid;
+  height: 20px;
+
+  &__fill {
+    background-color: aqua;
+  }
+}
