@@ -1,24 +1,35 @@
-import logo from './logo.svg';
+import { useEffect, useState } from 'react';
 import './App.scss';
 
 function App() {
+
+  const [taskList, setTaskList] = useState([])
+
+  // Effect for the initial load of the tasks 
+  useEffect(() => {
+    async function loadTasks() {
+      try {
+        const response = await fetch("http://localhost:3001/todos", {
+          method: "GET",
+        });
+
+        const tasks = await response.json();
+        setTaskList(tasks);
+      } catch (ex) {
+        console.error(ex);
+      }
+    }
+    loadTasks();
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <div className="app">
+      <div className="app__container">
+        {taskList && (
+            <p>Tasks: {taskList.length}</p>
+        )}
+      </div>
+    </div>    
   );
 }
 
