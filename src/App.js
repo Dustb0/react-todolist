@@ -1,5 +1,6 @@
 import React, { useEffect, useReducer } from 'react';
 import './App.scss';
+import TaskList from './components/TaskList';
 
 export const TaskListActions = {
   LoadTasks: Symbol(),
@@ -61,7 +62,7 @@ function App() {
           <ListContext.Provider
             value={{ state: taskListState, dispatch: dispatchTaskList }}
           >
-            {taskListState.map(t => <p>{t.title}</p>)}
+            <TaskList />
           </ListContext.Provider>
         )}
       </div>
