@@ -42,3 +42,9 @@ body,
     width: 100%;
   }
 }
+
+::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #bcbcbc;
+  opacity: 1; /* Firefox */
+}

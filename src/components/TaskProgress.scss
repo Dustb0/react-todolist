@@ -1,8 +1,22 @@
 .progress-bar {
-  border: 1px black solid;
-  height: 20px;
+  background-color: #e07c7c;
+  padding: 18px;
+  box-sizing: border-box;
+  border-radius: 20px;
 
-  &__fill {
-    background-color: aqua;
+  h1 {
+    color: white;
+    font-size: 28px;
+    font-weight: 500;
+    margin: 0 18px 12px 0;
+  }
+
+  &__container {
+    background-color: #3b3b3b;
+    height: 7px;
+  }
+
+  &__counter {
+    color: #ebb9b8;
   }
 }
