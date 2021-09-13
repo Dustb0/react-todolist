@@ -2,6 +2,28 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Requirements
+
+The application assumes that the [ToDo-JSON-Server](https://github.com/datawowio/todos-json-server) is running under localhost:3001.
+
+It was developed under Node v14.17.6.
+
+## Starting the Application
+
+Start the ToDo-Json_Server and then swich to this project's root folter.
+
+For the very first run, install the dependencies:
+
+```
+npm install
+```
+
+Then run it, a browser window should open:
+
+```
+npm run
+```
+
 ## Available Scripts
 
 In the project directory, you can run:
