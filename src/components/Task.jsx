@@ -1,12 +1,17 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Checkbox from "./Checkbox";
 import "./Task.scss";
 import DotImage from "../assets/dots.svg";
+import useOnClickOutside from "../hooks/clickOutside";
 
 export default function Task({ task, onToggleDone, onDeleteTask, onEditTask }) {
   const [editMode, setEditMode] = useState(false);
   const [editTaskTitle, setEditTaskTitle] = useState("");
   const [showActions, setShowActions] = useState(false);
+
+  // Use a reference to the action-menu to close it when the user clicks outside of it
+  const actionMenuRef = useRef();
+  useOnClickOutside(actionMenuRef, () => setShowActions(false));
 
   function openEditMode() {
     setEditTaskTitle(task.title);
@@ -45,7 +50,7 @@ export default function Task({ task, onToggleDone, onDeleteTask, onEditTask }) {
           >
             <img src={DotImage} alt="" />
             {showActions && (
-              <div className="task-detail__actions">
+              <div className="task-detail__actions" ref={actionMenuRef}>
                 <div
                   className="task-detail__action"
                   onClick={() => openEditMode()}
