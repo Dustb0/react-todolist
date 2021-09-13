@@ -1,9 +1,41 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useReducer } from 'react';
 import './App.scss';
+
+export const TaskListActions = {
+  LoadTasks: Symbol(),
+  NewTask: Symbol(),
+  DeleteTask: Symbol(),
+  EditTask: Symbol(),
+  ToggleDone: Symbol(),
+};
+
+function taskListReducer(state, action) {
+  switch (action.type) {
+    case TaskListActions.LoadTasks:
+      return action.tasks;
+
+    case TaskListActions.NewTask:
+      return [
+        ...state,
+        {
+          id: state.length,
+          title: action.title,
+          completed: false,
+        },
+      ];
+
+    default:
+      throw new Error(
+        "Unknown action for taskListReducer: " + action.type.toString()
+      );
+  }
+}
+
+export const ListContext = React.createContext();
 
 function App() {
 
-  const [taskList, setTaskList] = useState([])
+  const [taskListState, dispatchTaskList] = useReducer(taskListReducer, []);
 
   // Effect for the initial load of the tasks 
   useEffect(() => {
@@ -14,9 +46,9 @@ function App() {
         });
 
         const tasks = await response.json();
-        setTaskList(tasks);
+        dispatchTaskList({ type: TaskListActions.LoadTasks, tasks: tasks });
       } catch (ex) {
-        console.error(ex);
+        console.log(ex);
       }
     }
     loadTasks();
@@ -25,8 +57,12 @@ function App() {
   return (
     <div className="app">
       <div className="app__container">
-        {taskList && (
-            <p>Tasks: {taskList.length}</p>
+      {taskListState && (
+          <ListContext.Provider
+            value={{ state: taskListState, dispatch: dispatchTaskList }}
+          >
+            {taskListState.map(t => <p>{t.title}</p>)}
+          </ListContext.Provider>
         )}
       </div>
     </div>    
