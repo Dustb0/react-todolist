@@ -1,8 +1,16 @@
 .task-detail {
-  display: flex;
+  flex-direction: row;
+  margin-bottom: 17px;
 
   &__actions {
-    display: flex;
     height: 20px;
+
+    button {
+      margin-left: 10px;
+    }
+  }
+
+  &__editForm {
+    display: flex;
   }
 }

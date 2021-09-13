@@ -1,6 +1,8 @@
 import { useContext, useEffect, useState } from "react";
 import { ListContext, TaskListActions } from "../App";
+import Dropdown from "./Dropdown";
 import Task from "./Task";
+import "./TaskList.scss";
 
 export default function TaskList() {
   const TaskFilterOptions = {
@@ -55,15 +57,15 @@ export default function TaskList() {
   console.log("render");
 
   return (
-    <>
-      <select
-        value={taskFilter}
-        onChange={(event) => onFilterChange(Number(event.target.value))}
-      >
-        <option value={TaskFilterOptions.All}>All</option>
-        <option value={TaskFilterOptions.Done}>Done</option>
-        <option value={TaskFilterOptions.Undone}>Undone</option>
-      </select>
+    <div className="task-list">
+      <div className="task-list__title-row">
+        <h2>Tasks</h2>
+        <Dropdown
+          list={TaskFilterOptions}
+          value={taskFilter}
+          onSelect={onFilterChange}
+        />
+      </div>
       {filteredList &&
         filteredList.map((task) => (
           <Task
@@ -74,6 +76,6 @@ export default function TaskList() {
             onEditTask={onEditTask}
           />
         ))}
-    </>
+    </div>
   );
 }
