@@ -4,7 +4,7 @@ import "./App.scss";
 import TaskList from "./components/TaskList";
 import NewTask from "./components/NewTask";
 import TaskProgress from "./components/TaskProgress";
-import taskListReducer from "./reducers/TaskListReducer";
+import taskListReducer, { TaskListActions } from "./reducers/TaskListReducer";
 
 export const ListContext = React.createContext();
 

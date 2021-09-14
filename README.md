@@ -24,6 +24,14 @@ Then run it, a browser window should open:
 npm run
 ```
 
+## Running the Unit Tests
+
+Run the followng command in the project directory:
+
+```
+npm test
+```
+
 ## Available Scripts
 
 In the project directory, you can run:

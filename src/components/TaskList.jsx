@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from "react";
-import { ListContext, TaskListActions } from "../App";
+import { ListContext } from "../App";
+import { TaskListActions } from "../reducers/TaskListReducer";
 import Dropdown from "./Dropdown";
 import Task from "./Task";
 import "./TaskList.scss";

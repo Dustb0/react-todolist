@@ -1,5 +1,6 @@
 import { useContext, useState } from "react";
-import { ListContext, TaskListActions } from "../App";
+import { ListContext } from "../App";
+import { TaskListActions } from "../reducers/TaskListReducer";
 
 export default function NewTask() {
   const [newTaskTitle, setNewTaskTitle] = useState("");

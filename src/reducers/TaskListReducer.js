@@ -1,3 +1,5 @@
+import TodoService from "../TodoService";
+
 export const TaskListActions = {
   LoadTasks: Symbol(),
   NewTask: Symbol(),
@@ -12,31 +14,47 @@ export default function taskListReducer(state, action) {
       return action.tasks;
 
     case TaskListActions.NewTask:
-      return [
-        ...state,
-        {
-          id: state.length,
-          title: action.title,
-          completed: false
-        }
-      ];
+      const newTask = {
+        id: state.length,
+        title: action.title,
+        completed: false
+      };
+
+      // Persist the new task
+      TodoService.addTask(newTask);
+
+      // Update the state
+      return [...state, newTask];
 
     case TaskListActions.DeleteTask:
+      fetch("http://localhost:3001/todos/" + action.task.id, {
+        method: "DELETE"
+      });
+
       return state.filter((t) => t !== action.task);
 
     case TaskListActions.EditTask:
+      const modifiedTask = { ...action.task, title: action.newTitle };
+      TodoService.updateTask(modifiedTask);
+
       return state.map((task) => {
         if (task === action.task) {
-          return { ...task, title: action.newTitle };
+          return modifiedTask;
         }
 
         return task;
       });
 
     case TaskListActions.ToggleDone:
+      const toggledTask = {
+        ...action.task,
+        completed: !action.task.completed
+      };
+      TodoService.updateTask(toggledTask);
+
       return state.map((task) => {
         if (task === action.task) {
-          return { ...task, completed: !task.completed };
+          return toggledTask;
         }
 
         return task;
