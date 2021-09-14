@@ -18,10 +18,18 @@ body,
 
   &__container {
     background-color: #f5f5f5;
-    width: 720px;
-    padding: 61px 101px 63px 101px;
+    width: 90%;
+    padding: 31px 51px 31px 51px;
     border-radius: 20px;
     box-sizing: border-box;
+  }
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+  .app__container {
+    width: 720px;
+    padding: 61px 101px 63px 101px;
   }
 }
 
