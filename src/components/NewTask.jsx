@@ -7,9 +7,10 @@ export default function NewTask() {
 
   function handleKeyPress(event) {
     if (event.code === "Enter") {
+      console.log("keypress ENTER");
       taskContext.dispatch({
         type: TaskListActions.NewTask,
-        title: newTaskTitle,
+        title: newTaskTitle
       });
 
       setNewTaskTitle("");

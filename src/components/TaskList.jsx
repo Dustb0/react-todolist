@@ -8,7 +8,7 @@ export default function TaskList() {
   const TaskFilterOptions = {
     All: 0,
     Done: 1,
-    Undone: 2,
+    Undone: 2
   };
 
   const taskContext = useContext(ListContext);
@@ -32,7 +32,7 @@ export default function TaskList() {
     taskContext.dispatch({
       type: TaskListActions.EditTask,
       task: task,
-      newTitle: newTitle,
+      newTitle: newTitle
     });
   }
 
@@ -53,8 +53,6 @@ export default function TaskList() {
         break;
     }
   }
-
-  console.log("render");
 
   return (
     <div className="task-list">
